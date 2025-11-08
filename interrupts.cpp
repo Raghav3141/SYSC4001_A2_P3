@@ -121,8 +121,9 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
                 current_time = child_time;
 
                 //returning control to parent
-                current = parent;
-
+                free_memory(&child);
+                current = wait_queue.back();
+                wait_queue.pop_back();
             ///////////////////////////////////////////////////////////////////////////////////////////
 
 
