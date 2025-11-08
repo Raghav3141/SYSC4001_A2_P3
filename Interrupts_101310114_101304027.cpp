@@ -185,11 +185,7 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
                 execution += exec_execution;
                 system_status += exec_status;
                 current_time = exec_time;
-<<<<<<< HEAD
             } 
-=======
-            }
->>>>>>> 7b22a79fca1170f0ebd34774713b55a880501901
             ///////////////////////////////////////////////////////////////////////////////////////////
 
             break; //Why is this important? (answer in report)
