@@ -52,8 +52,27 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
 
             ///////////////////////////////////////////////////////////////////////////////////////////
             //Add your FORK output here
-            
+            execution += std::to_string(current_time) + ", " + std::to_string(duration_intr) + ", " + "cloning the PCB\n";
+            current_time += duration_intr;
 
+            PCB child = current;
+            child.PID = current.PID++;
+            child.PPID = current.PID;
+            child.partition_number = -1;
+
+            if (!allocate_memory(&child)){
+                std::cerr << "ERROR, Memory allocation failed!" << std::endl;
+            }
+
+            wait_queue.push_back(current);
+
+            execution += std::to_string(current_time) + ", 0, scheduler called\n";
+            
+            execution += std::to_string(current_time) + ", 1, IRET\n";
+            current_time++;
+
+            system_status += "time: " + std::to_string(current_time) + "; current trace: " + trace + "\n";
+            system_status += print_PCB(child, wait_queue);
 
             ///////////////////////////////////////////////////////////////////////////////////////////
 
