@@ -113,8 +113,16 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
             //With the child's trace, run the child (HINT: think recursion)
 
+            if (!child_trace.empty()) {
+                auto [child_exec, child_status, child_time] = simulate_trace(child_trace, current_time, vectors, delays, external_files, child, wait_queue); 
 
+                execution += child_exec;
+                system_status += child_status;
+                current_time = child_time;
 
+                //returning control to parent
+                current = parent;
+                
             ///////////////////////////////////////////////////////////////////////////////////////////
 
 
