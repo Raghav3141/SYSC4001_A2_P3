@@ -134,8 +134,35 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
             //Add your EXEC output here
 
+            unsigned int program_size = get_size(program_name, external_files);
+            execution += std::to_string(current_time) + ", " + std::to_string(duration_intr) + ", Program Size: " + std::to_string(program_size) + " Mb\n"; 
+            current_time += duration_intr;
 
+            unsigned int load_time = program_size * 15;
+            execution += std::to_string(current_time) + ", " + std::to_string(load_time) + ", loading program into memory\n";
+            current_time += load_time;
 
+            free_memory(&current);
+
+            current.program_name = program_name;
+            current.size = program_size;
+            if (!allocate_memory(&current)){
+                std::cerr << "ERROR, Memory allocation failed!" << std::endl;
+            }
+
+            execution += std::to_string(current_time) + ", 3, marking partition as occupied\n";
+            current_time += 3;
+
+            execution += std::to_string(current_time) + ", 6, updating PCB\n";
+            current_time += 6;
+
+            execution += std::to_string(current_time) + ", 0, scheduler called\n";
+
+            execution += std::to_string(current_time) + ", 1, IRET\n";
+            current_time++;
+
+            system_status += "time: " + std::to_string(current_time) + "; current trace: " + trace + "\n";
+            system_status += print_PCB(current, wait_queue);
             ///////////////////////////////////////////////////////////////////////////////////////////
 
 
