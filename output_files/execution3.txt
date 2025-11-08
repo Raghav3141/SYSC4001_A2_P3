@@ -1,0 +1,32 @@
+0, 1, switch to kernel mode
+1, 10, context saved
+11, 1, find vector 2 in memory position 0x0004
+12, 1, load address 0X0695 into the PC
+13, 20, cloning the PCB
+33, 0, scheduler called
+33, 1, IRET
+34, 10, CPU Burst
+44, 1, switch to kernel mode
+45, 10, context saved
+55, 1, find vector 3 in memory position 0x0006
+56, 1, load address 0X042B into the PC
+57, 60, Program Size: 4294967295 Mb
+117, 4294967281, loading program into memory
+102, 3, marking partition as occupied
+105, 6, updating PCB
+111, 0, scheduler called
+111, 1, IRET
+112, 50, CPU Burst
+162, 1, switch to kernel mode
+163, 10, context saved
+173, 1, find vector 6 in memory position 0x000C
+174, 1, load address 0X0639 into the PC
+175, 265, SYSCALL ISR (ADD STEPS HERE)
+440, 1, IRET
+441, 15, CPU Burst
+456, 1, switch to kernel mode
+457, 10, context saved
+467, 1, find vector 6 in memory position 0x000C
+468, 1, load address 0X0639 into the PC
+469, 265, ENDIO ISR(ADD STEPS HERE)
+734, 1, IRET

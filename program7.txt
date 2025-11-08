@@ -1,2 +1,2 @@
-CPU, 63
-END_IO, 34
+CPU, 50
+END_IO, 13
