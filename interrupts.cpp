@@ -122,7 +122,7 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
 
                 //returning control to parent
                 current = parent;
-                
+
             ///////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -177,8 +177,13 @@ std::tuple<std::string, std::string, int> simulate_trace(std::vector<std::string
             ///////////////////////////////////////////////////////////////////////////////////////////
             //With the exec's trace (i.e. trace of external program), run the exec (HINT: think recursion)
 
+            if (!exec_trace_file.empty()) {
+                auto [exec_execution, exec_status, exec_time] = simulate_trace(exec_trace, current_time, vectors, delays, external_files, current, wait_queue); 
 
-
+                execution += exec_execution;
+                system_status += exec_status;
+                current_time = exec_time;
+                
             ///////////////////////////////////////////////////////////////////////////////////////////
 
             break; //Why is this important? (answer in report)
